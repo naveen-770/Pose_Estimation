@@ -18,5 +18,5 @@ graph_opt file.
 $ python filename.py
 
 
-all.py contains all the files.
+all.py contains all the files.        
 Seperate files are also given.
