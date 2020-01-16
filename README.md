@@ -16,3 +16,7 @@ $ cd ..
 graph_opt file.
 5. Open the prompt and run file
 $ python filename.py
+
+
+all.py contains all the files.
+Seperate files are also given.
