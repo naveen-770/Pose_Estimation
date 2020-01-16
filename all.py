@@ -26,6 +26,15 @@ def find_point(pose, p):
         except:
             return (0,0)
     return (0,0)
+    
+def smoker( a, b):
+    '''
+        a is distance between two wrists
+    '''
+    if a in range(5,20) or b in range(5,20) :
+        return True
+    return False
+    
 def euclidian( point1, point2):
     return math.sqrt((point1[0]-point2[0])**2 + (point1[1]-point2[1])**2 )
 def angle_calc(p0, p1, p2 ):
@@ -83,7 +92,7 @@ if __name__ == '__main__':
                         help='for debug purpose, if enabled, speed for inference is dropped.')
     args = parser.parse_args()
     
-    print("mode 0: Only Pose Estimation \nmode 1: People Counter \nmode 2: Fall Detection \nmode 3: Yoga pose Detector \nmode 4: Planking/Push up Detection")
+    print("mode 0: Only Pose Estimation \nmode 1: People Counter \nmode 2: Fall Detection \nmode 3: Yoga pose Detector \nmode 4: Smoker Detection\nmode 5: Planking/Push up Detection")
     mode = int(input("Enter a mode : "))
     
     logger.debug('initialization %s : %s' % (args.model, get_graph_path(args.model)))
@@ -147,7 +156,23 @@ if __name__ == '__main__':
                             #    yoga_duration = time.time()
                             draw_str(image, (20, 50), action, orange_color, 2)
                             logger.debug("*** Mountain Pose ***")
-        elif mode == 4:
+        elif (mode == 4):
+            if len(pose) > 0:
+                # distance calculations
+                head_hand_1 = int(euclidian(find_point(pose, 1), find_point(pose, 7)))
+                head_hand_2 = int(euclidian(find_point(pose, 1), find_point(pose, 4)))
+                
+                
+                
+                if (mode == 4) and smoker(head_hand_2, head_hand_1):
+                            # draw_str(frame, (20, 220), " Mountain Pose", orange_color, 1.5)
+                            action = "Smoker"
+                            is_yoga = True
+                            #if prev_action == 'Unknown' or prev_action == "Unknown_First":
+                            #    yoga_duration = time.time()
+                            draw_str(image, (20, 50), action, orange_color, 2)
+                            logger.debug("*** Smoker Detected ***")
+        elif mode == 5:
             if len(pose) > 0:
                 # distance calculations
                 head_hand_dst_l = int(euclidian(find_point(pose, 0), find_point(pose, 7)))
@@ -158,7 +183,7 @@ if __name__ == '__main__':
                 angle6 =  angle_calc(find_point(pose,4), find_point(pose,3), find_point(pose,2))
                 angle8 =  angle_calc(find_point(pose,8), find_point(pose,9), find_point(pose,10))
 
-                if (mode == 4) and plank(angle2, angle6, angle4, angle8,head_hand_dst_r, head_hand_dst_l):
+                if (mode == 5) and plank(angle2, angle6, angle4, angle8,head_hand_dst_r, head_hand_dst_l):
                             action = "Plank"
                             is_yoga = True
                             #if prev_action == 'Unknown' or prev_action == "Unknown_First":
