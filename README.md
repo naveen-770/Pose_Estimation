@@ -1,4 +1,4 @@
-## Pose_Estimation
+## Pose_Estimation and Human Activity Recognition (HAR)
 
 
 **Steps to Install**
@@ -16,6 +16,9 @@ $ cd ..
 graph_opt file.
 5. Open the prompt and run file
 $ python filename.py
+
+
+This github repository consist of basic pose estimation and 5 HAR (Human Activity Reognition) activities such as Smoker Detection, Mountain Pose Checker, Plank position checker, Fall Detector and People Counter.
 
 
 all.py contains all the files.        
