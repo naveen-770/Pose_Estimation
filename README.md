@@ -23,3 +23,9 @@ This github repository consist of basic pose estimation and 5 HAR (Human Activit
 
 all.py contains all the files.        
 Seperate files are also given.
+
+
+
+| No of People  | Mountain Pose | Fall Detector | Plank Pose |
+|:---------|:--------------------|:----------------|:-----------------|
+| ![cmu-model](/gif/Git-no-people.gif)     | ![mb-model-macbook](/gif/Git_mountain.gif) | ![mb-model-tx2](/gif/fall_done.gif) | ![mb-model-tx](/gif/Git-plank.gif)
